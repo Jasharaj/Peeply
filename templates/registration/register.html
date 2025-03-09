@@ -1,12 +1,32 @@
 {% extends "layout.html" %}
 
-{% block content %}
-<h2>Registration Form</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary">Register</button>
-</form>
+{% block title %}Register - Peeply{% endblock %}
 
-<p>Already have an account?<a href="{% url 'login' %}">Login Here</a></p>
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg">
+            <div class="card-header bg-transparent border-0 pt-4">
+                <h2 class="text-center mb-0"><i class="fas fa-user-plus me-2"></i>Create Account</h2>
+                <p class="text-center text-muted small">Join our community today</p>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.as_p }}
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-custom-primary" type="submit">
+                            <i class="fas fa-user-plus me-2"></i>Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center pb-4">
+                <p class="mb-0">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

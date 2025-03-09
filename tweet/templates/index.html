@@ -1,9 +1,59 @@
 {% extends "layout.html" %}
 
-{% block title %}
-Chai aur Tweet
-{% endblock %}
+{% block title %}Peeply - Connect & Share{% endblock %}
 
 {% block content %}
-<h1 class="text-center mt-4">Welcome to Chai's Django Project</h1>
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-8 text-center">
+        <div class="mb-5">
+            <i class="fas fa-comment-alt" style="font-size: 5rem; color: var(--accent-color);"></i>
+        </div>
+        <h1 class="display-4 fw-bold mb-4">Welcome to Peeply</h1>
+        <p class="lead text-muted mb-5">Connect with friends, share your thoughts, and discover new content in our community.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'tweet_list' %}" class="btn btn-custom-primary btn-lg px-4 py-2">
+                <i class="fas fa-stream me-2"></i>View Posts
+            </a>
+            <a href="{% url 'tweet_create' %}" class="btn btn-custom-success btn-lg px-4 py-2">
+                <i class="fas fa-feather-alt me-2"></i>Create Post
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 pt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="fas fa-users" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                </div>
+                <h3 class="card-title h5 mb-3">Connect with Others</h3>
+                <p class="card-text text-muted">Join a vibrant community of users sharing ideas, photos, and experiences.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="fas fa-photo-video" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                </div>
+                <h3 class="card-title h5 mb-3">Share Your Moments</h3>
+                <p class="card-text text-muted">Post photos and thoughts that matter to you and get feedback from the community.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                </div>
+                <h3 class="card-title h5 mb-3">Safe & Secure</h3>
+                <p class="card-text text-muted">Enjoy a platform that prioritizes your privacy and data security at every step.</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

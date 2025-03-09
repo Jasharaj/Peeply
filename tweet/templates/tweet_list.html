@@ -1,27 +1,51 @@
 {% extends "layout.html" %}
 
-{% block title %}
-Chai aur Tweet
-{% endblock %}
+{% block title %}Feed - Peeply{% endblock %}
 
 {% block content %}
-<h1 class="text-center mt-4">Welcome to Chai's Django Project</h1>
+<div class="row mb-4 align-items-center">
+    <div class="col-md-6">
+        <h2 class="mb-0">Discover what people are sharing</h2>
+    </div>
+    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+        <a class="btn btn-custom-primary" href="{% url 'tweet_create' %}">
+            <i class="fas fa-feather-alt me-2"></i>Create Post
+        </a>
+    </div>
+</div>
 
-<a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}">Create a tweet</a>
-<div class='container row gap-3'>
+<div class="row g-4">
     {% for tweet in tweets %}
-    <div class="card" style="width: 18rem;">
-        <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{tweet.user.username}}</h5>
-          <p class="card-text">{{tweet.text}}</p>
-
-          {% if tweet.user == user %}
-          <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
-          <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
-          {% endif %}
-        </div> 
-      </div>
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+            {% if tweet.photo %}
+            <img src="{{tweet.photo.url}}" class="card-img-top" alt="Post image" style="height: 200px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle me-2" style="width: 40px; height: 40px;">
+                        <span class="text-white fw-bold">{{ tweet.user.username|slice:"0:1"|upper }}</span>
+                    </div>
+                    <div>
+                        <h5 class="card-title mb-0">{{ tweet.user.username }}</h5>
+                        <small class="text-muted">@{{ tweet.user.username|lower }}</small>
+                    </div>
+                </div>
+                <p class="card-text">{{ tweet.text }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <div class="mb-4">
+            <i class="fas fa-inbox" style="font-size: 3rem; color: var(--accent-color);"></i>
+        </div>
+        <h3>No posts yet</h3>
+        <p class="text-muted">Be the first to share something with the community!</p>
+        <a href="{% url 'tweet_create' %}" class="btn btn-custom-primary mt-2">
+            <i class="fas fa-feather-alt me-2"></i>Create Post
+        </a>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
